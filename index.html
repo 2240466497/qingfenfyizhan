@@ -1,0 +1,2712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="中交西安筑路机械有限公司吉国项目群党支部清风驿站境外项目廉洁合规教育与岗位风险防控系统" />
+  <title>清风驿站｜境外项目廉洁合规教育与岗位风险防控系统</title>
+  <style>
+    :root {
+      --primary: #0f5f4d;
+      --primary-dark: #0a4438;
+      --primary-light: #e9f5f1;
+      --accent: #c39a4a;
+      --danger: #b42318;
+      --warning: #b54708;
+      --success: #067647;
+      --info: #175cd3;
+      --ink: #1d2939;
+      --muted: #667085;
+      --line: #d0d5dd;
+      --paper: #ffffff;
+      --canvas: #f2f4f7;
+      --shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+      --radius: 16px;
+    }
+ 
+    * {
+      box-sizing: border-box;
+    }
+ 
+    html {
+      scroll-behavior: smooth;
+    }
+ 
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(15, 95, 77, 0.08), transparent 22%),
+        radial-gradient(circle at 90% 15%, rgba(195, 154, 74, 0.08), transparent 24%),
+        var(--canvas);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height: 1.7;
+    }
+ 
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+ 
+    button {
+      cursor: pointer;
+    }
+ 
+    .app-shell {
+      min-height: 100vh;
+    }
+ 
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 76px;
+      padding: 12px clamp(16px, 4vw, 56px);
+      color: #fff;
+      background: linear-gradient(120deg, var(--primary-dark), var(--primary));
+      box-shadow: 0 8px 28px rgba(10, 68, 56, 0.22);
+    }
+ 
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+ 
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 26px;
+    }
+ 
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(16px, 2vw, 22px);
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+ 
+    .brand p {
+      margin: 2px 0 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 12px;
+    }
+ 
+    .top-actions {
+      display: flex;
+
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+ 
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 22px;
+      width: min(1500px, 100%);
+      margin: 0 auto;
+      padding: 22px clamp(14px, 3vw, 36px) 56px;
+    }
+ 
+    .sidebar {
+      position: sticky;
+      top: 98px;
+      align-self: start;
+      padding: 18px;
+      border: 1px solid rgba(15, 95, 77, 0.08);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+ 
+    .profile-mini {
+      padding: 14px;
+      margin-bottom: 16px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, var(--primary-light), #fff);
+    }
+ 
+    .profile-mini strong,
+    .profile-mini span {
+      display: block;
+    }
+ 
+    .profile-mini span {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+ 
+    .nav-list {
+      display: grid;
+      gap: 8px;
+    }
+ 
+    .nav-btn {
+      width: 100%;
+      padding: 11px 12px;
+      border: 0;
+      border-radius: 12px;
+      color: var(--ink);
+      background: transparent;
+      text-align: left;
+      transition: 0.2s ease;
+    }
+ 
+    .nav-btn:hover {
+      background: var(--primary-light);
+      transform: translateX(2px);
+    }
+ 
+    .nav-btn.active {
+      color: #fff;
+      background: linear-gradient(120deg, var(--primary-dark), var(--primary));
+      box-shadow: 0 8px 20px rgba(15, 95, 77, 0.18);
+    }
+ 
+    .side-note {
+      margin-top: 18px;
+      padding: 14px;
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      color: #694f20;
+      background: #fff8e8;
+      font-size: 13px;
+    }
+ 
+    .main {
+      min-width: 0;
+    }
+ 
+    .panel {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+ 
+    .panel.active {
+      display: block;
+    }
+ 
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+ 
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(26px, 5vw, 58px);
+      border-radius: 24px;
+
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(8, 61, 49, 0.96), rgba(15, 95, 77, 0.92)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 34px);
+      box-shadow: var(--shadow);
+    }
+ 
+    .hero::after {
+      content: "廉";
+      position: absolute;
+      right: -25px;
+      bottom: -70px;
+      color: rgba(255, 255, 255, 0.08);
+      font-family: "STKaiti", "KaiTi", serif;
+      font-size: 260px;
+      line-height: 1;
+      pointer-events: none;
+    }
+ 
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #f3d797;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+ 
+    .hero h2 {
+      max-width: 920px;
+      margin: 0;
+      font-size: clamp(30px, 5vw, 58px);
+      line-height: 1.15;
+    }
+ 
+    .hero .subtitle {
+      max-width: 900px;
+      margin: 20px 0 0;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: clamp(15px, 2vw, 19px);
+    }
+ 
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+ 
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+ 
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+ 
+    .btn-primary {
+      color: #fff;
+      background: var(--primary);
+    }
+ 
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+ 
+    .btn-light {
+      color: var(--primary-dark);
+      background: #fff;
+    }
+ 
+    .btn-outline-light {
+      color: #fff;
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.08);
+    }
+ 
+    .btn-outline {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: #fff;
+    }
+ 
+    .btn-danger {
+      color: #fff;
+      background: var(--danger);
+    }
+ 
+    .btn-muted {
+      color: var(--ink);
+      border-color: var(--line);
+      background: #fff;
+    }
+ 
+    .btn-sm {
+      min-height: 34px;
+      padding: 6px 11px;
+      border-radius: 9px;
+      font-size: 13px;
+    }
+ 
+    .btn:disabled {
+      cursor: not-allowed;
+
+      opacity: 0.5;
+      transform: none;
+    }
+ 
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 26px 0 14px;
+    }
+ 
+    .section-title h3 {
+      margin: 0;
+      font-size: 24px;
+    }
+ 
+    .section-title p {
+      margin: 4px 0 0;
+      color: var(--muted);
+    }
+ 
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+ 
+    .card-grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+ 
+    .card,
+    .content-card {
+      border: 1px solid rgba(15, 95, 77, 0.09);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+ 
+    .card {
+      padding: 20px;
+    }
+ 
+    .content-card {
+      padding: clamp(18px, 3vw, 30px);
+    }
+ 
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      right: -28px;
+      top: -28px;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--primary-light);
+    }
+ 
+    .stat-number {
+      position: relative;
+      z-index: 1;
+      margin: 8px 0 0;
+      color: var(--primary-dark);
+      font-size: 34px;
+      font-weight: 800;
+    }
+ 
+    .muted {
+      color: var(--muted);
+    }
+ 
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      font-size: 12px;
+      font-weight: 700;
+    }
+ 
+    .tag.danger {
+      color: #7a271a;
+      background: #fee4e2;
+    }
+ 
+    .tag.warning {
+      color: #7a2e0e;
+      background: #ffead5;
+    }
+ 
+    .tag.info {
+      color: #1849a9;
+      background: #d1e9ff;
+    }
+ 
+    .progress-track {
+      overflow: hidden;
+      height: 10px;
+      margin-top: 10px;
+      border-radius: 999px;
+      background: #eaecf0;
+
+    }
+ 
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), #2ea47f);
+      transition: width 0.35s ease;
+    }
+ 
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+ 
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+ 
+    .field.full {
+      grid-column: 1 / -1;
+    }
+ 
+    .field label {
+      font-weight: 700;
+    }
+ 
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 11px 12px;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+      transition: 0.2s ease;
+    }
+ 
+    .field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+ 
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(15, 95, 77, 0.1);
+    }
+ 
+    .notice {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #f9fafb;
+      border-left: 4px solid var(--info);
+    }
+ 
+    .notice.warning {
+      border-left-color: var(--warning);
+      background: #fffaeb;
+    }
+ 
+    .notice.success {
+      border-left-color: var(--success);
+      background: #ecfdf3;
+    }
+ 
+    .notice.danger {
+      border-left-color: var(--danger);
+      background: #fef3f2;
+    }
+ 
+    .lesson-list {
+      display: grid;
+      gap: 14px;
+    }
+ 
+    .lesson-item {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+    }
+ 
+    .lesson-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      background: #f9fafb;
+    }
+ 
+    .lesson-head h4 {
+      margin: 0;
+      font-size: 17px;
+    }
+ 
+    .lesson-body {
+      display: none;
+      padding: 18px;
+      border-top: 1px solid var(--line);
+    }
+ 
+    .lesson-item.open .lesson-body {
+      display: block;
+
+    }
+ 
+    .lesson-body ul,
+    .detail-block ul,
+    .report-block ul {
+      margin: 8px 0 0;
+      padding-left: 22px;
+    }
+ 
+    .lesson-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+ 
+    .role-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 22px;
+      border-radius: 16px;
+      color: #fff;
+      background: linear-gradient(120deg, var(--primary-dark), var(--primary));
+    }
+ 
+    .role-header h3 {
+      margin: 0;
+      font-size: 28px;
+    }
+ 
+    .role-header p {
+      margin: 6px 0 0;
+      color: rgba(255, 255, 255, 0.82);
+    }
+ 
+    .role-icon {
+      display: grid;
+      place-items: center;
+      width: 76px;
+      height: 76px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.14);
+      font-size: 38px;
+    }
+ 
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+ 
+    .detail-block {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+    }
+ 
+    .detail-block h4 {
+      margin: 0;
+    }
+ 
+    .detail-block.risk {
+      border-top: 5px solid var(--danger);
+    }
+ 
+    .detail-block.control {
+      border-top: 5px solid var(--success);
+    }
+ 
+    .detail-block.duty {
+      border-top: 5px solid var(--info);
+    }
+ 
+    .detail-block.redline {
+      border-top: 5px solid var(--warning);
+    }
+ 
+    .question-card {
+      padding: 22px;
+      margin-bottom: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+ 
+    .question-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+ 
+    .question-title {
+      margin: 12px 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+ 
+    .option-list {
+      display: grid;
+      gap: 10px;
+    }
+ 
+    .option {
+      display: flex;
+
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      transition: 0.18s ease;
+    }
+ 
+    .option:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+ 
+    .option input {
+      margin-top: 6px;
+    }
+ 
+    .quiz-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 16px 0;
+    }
+ 
+    .score-ring {
+      display: grid;
+      place-items: center;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: conic-gradient(var(--primary) 0deg, var(--primary) 0deg, #eaecf0 0deg);
+      position: relative;
+    }
+ 
+    .score-ring::after {
+      content: "";
+      position: absolute;
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      background: #fff;
+    }
+ 
+    .score-ring span {
+      position: relative;
+      z-index: 1;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+ 
+    .result-layout {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 24px;
+      align-items: center;
+    }
+ 
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+    }
+ 
+    .check-row input {
+      margin-top: 6px;
+      transform: scale(1.2);
+    }
+ 
+    .pledge-paper {
+      padding: clamp(22px, 4vw, 42px);
+      border: 1px solid #d8c69a;
+      border-radius: 18px;
+      background:
+        linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
+        repeating-linear-gradient(0deg, transparent 0, transparent 28px, rgba(195,154,74,0.12) 29px);
+      box-shadow: var(--shadow);
+    }
+ 
+    .pledge-paper h3 {
+      text-align: center;
+      font-family: "STKaiti", "KaiTi", serif;
+      font-size: 30px;
+    }
+ 
+    .pledge-paper ol {
+      padding-left: 24px;
+    }
+ 
+    .signature-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 26px;
+    }
+ 
+    .report-sheet {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+ 
+    .report-title {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+ 
+    .report-title h2 {
+      margin-bottom: 4px;
+    }
+ 
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+ 
+    .info-table th,
+    .info-table td {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+ 
+    .info-table th {
+      width: 18%;
+      background: #f9fafb;
+    }
+ 
+    .report-block {
+      margin-top: 20px;
+    }
+ 
+    .report-block h4 {
+      margin: 0 0 8px;
+      padding-left: 10px;
+      border-left: 4px solid var(--primary);
+    }
+ 
+    .empty-state {
+      padding: 42px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+ 
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 100;
+      max-width: 360px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      color: #fff;
+      background: #101828;
+      box-shadow: 0 12px 36px rgba(16, 24, 40, 0.26);
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: 0.25s ease;
+    }
+ 
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+ 
+    .footer {
+      padding: 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+ 
+    .mobile-nav-toggle {
+      display: none;
+    }
+ 
+    @media (max-width: 1080px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+ 
+      .sidebar {
+        position: static;
+        display: none;
+      }
+ 
+      .sidebar.open {
+        display: block;
+      }
+ 
+      .mobile-nav-toggle {
+        display: inline-flex;
+      }
+ 
+      .card-grid,
+      .card-grid.two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+ 
+    @media (max-width: 720px) {
+      .topbar {
+        min-height: 66px;
+      }
+ 
+      .brand p {
+        display: none;
+      }
+ 
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+      }
+ 
+      .top-actions .desktop-label {
+        display: none;
+      }
+ 
+      .layout {
+        padding: 14px 12px 36px;
+      }
+ 
+      .card-grid,
+      .card-grid.two,
+      .form-grid,
+      .detail-grid,
+      .signature-row,
+      .result-layout {
+        grid-template-columns: 1fr;
+      }
+ 
+      .role-header {
+        grid-template-columns: 1fr;
+      }
+ 
+      .role-icon {
+        display: none;
+      }
+ 
+      .hero {
+        padding: 28px 22px;
+      }
+ 
+      .hero-actions .btn {
+        width: 100%;
+      }
+ 
+      .result-layout {
+        justify-items: center;
+      }
+    }
+ 
+    @media print {
+      body {
+        background: #fff !important;
+      }
+ 
+      .topbar,
+      .sidebar,
+      .hero-actions,
+      .quiz-toolbar,
+      .no-print,
+      .footer,
+      .toast {
+        display: none !important;
+      }
+ 
+      .layout {
+        display: block;
+        max-width: none;
+        padding: 0;
+      }
+ 
+      .panel {
+        display: none !important;
+      }
+ 
+      #panel-report {
+        display: block !important;
+      }
+ 
+      .report-sheet {
+        border: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">清</div>
+        <div>
+          <h1>“清风驿站”境外项目廉洁合规教育与岗位风险防控系统</h1>
+          <p>中交西安筑路机械有限公司吉国项目群党支部</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="btn btn-outline-light btn-sm mobile-nav-toggle" id="mobileNavToggle">☰</button>
+        <button class="btn btn-outline-light btn-sm" id="saveTopBtn">💾 <span class="desktop-label">保存进度</span></button>
+        <button class="btn btn-light btn-sm" id="printTopBtn">🖨️ <span class="desktop-label">打印报告</span></button>
+      </div>
+    </header>
+ 
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="profile-mini">
+          <strong id="miniName">未登记人员</strong>
+          <span id="miniRole">请先完成组织登记</span>
+        </div>
+        <nav class="nav-list" aria-label="系统导航">
+          <button class="nav-btn active" data-panel="home">🏠 首页与登记</button>
+          <button class="nav-btn" data-panel="common">📘 通用学习</button>
+          <button class="nav-btn" data-panel="role">🧭 岗位风险</button>
+          <button class="nav-btn" data-panel="special">🌍 境外专项</button>
+          <button class="nav-btn" data-panel="quiz">📝 场景测评</button>
+          <button class="nav-btn" data-panel="pledge">✍️ 廉洁承诺</button>
+
+          <button class="nav-btn" data-panel="report">📄 学习报告</button>
+        </nav>
+        <div class="side-note">
+          清风护航海外路，廉洁合规筑坦途。<br />
+          业务开展到哪里，廉洁风险防控就延伸到哪里。
+        </div>
+      </aside>
+ 
+      <main class="main">
+        <section class="panel active" id="panel-home">
+          <div class="hero">
+            <p class="eyebrow">心至廉 · 路致远</p>
+            <h2>境外工程项目廉洁合规，从每一次决策、签字和履职开始</h2>
+            <p class="subtitle">
+              面向路面分公司吉国项目全体干部职工，聚焦决策管理、合同经营、分包采购、计量结算、财务资金、设备物资、报关清关、安全生产、工程质量、外事翻译和属地协调等重点环节。
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-light" data-go="common">开始通用学习</button>
+              <button class="btn btn-outline-light" data-go="role">查看岗位风险</button>
+            </div>
+          </div>
+ 
+          <div class="section-title">
+            <div>
+              <h3>组织登记</h3>
+              <p>登记信息仅保存在当前浏览器本地，不会自动上传。</p>
+            </div>
+          </div>
+ 
+          <div class="content-card">
+            <div class="form-grid">
+              <div class="field">
+                <label for="nameInput">姓名</label>
+                <input id="nameInput" type="text" maxlength="30" placeholder="请输入姓名" />
+              </div>
+              <div class="field">
+                <label for="departmentInput">部门/项目</label>
+                <input id="departmentInput" type="text" value="路面分公司吉国项目" maxlength="60" />
+              </div>
+              <div class="field">
+                <label for="roleSelect">岗位</label>
+                <select id="roleSelect"></select>
+              </div>
+              <div class="field">
+                <label for="employeeNoInput">工号（选填）</label>
+                <input id="employeeNoInput" type="text" maxlength="30" placeholder="请输入工号" />
+              </div>
+              <div class="field full">
+                <label for="noteInput">个人学习重点（选填）</label>
+                <textarea id="noteInput" maxlength="300" placeholder="例如：重点学习合同审批、材料验收、报关费用或属地用工风险。"></textarea>
+              </div>
+            </div>
+            <div class="lesson-actions">
+              <button class="btn btn-primary" id="saveProfileBtn">保存登记信息</button>
+              <button class="btn btn-muted" id="resetAllBtn">清除本地数据</button>
+            </div>
+          </div>
+ 
+          <div class="section-title">
+            <div>
+              <h3>学习进度</h3>
+              <p>完成通用课程、岗位学习、测评和承诺后生成学习报告。</p>
+            </div>
+          </div>
+ 
+          <div class="card-grid">
+            <div class="card stat-card">
+              <span class="tag">通用课程</span>
+              <div class="stat-number" id="commonProgressText">0/5</div>
+              <div class="progress-track"><div class="progress-bar" id="commonProgressBar"></div></div>
+            </div>
+            <div class="card stat-card">
+              <span class="tag info">岗位学习</span>
+              <div class="stat-number" id="roleProgressText">未完成</div>
+              <div class="progress-track"><div class="progress-bar" id="roleProgressBar"></div></div>
+            </div>
+            <div class="card stat-card">
+              <span class="tag warning">测评结果</span>
+              <div class="stat-number" id="quizProgressText">未测评</div>
+              <div class="progress-track"><div class="progress-bar" id="quizProgressBar"></div></div>
+            </div>
+          </div>
+        </section>
+ 
+        <section class="panel" id="panel-common">
+          <div class="section-title">
+            <div>
+              <h3>项目廉洁合规第一课</h3>
+              <p>五节通用微课堂，帮助全体人员统一纪律意识、授权意识和报告意识。</p>
+            </div>
+          </div>
+          <div class="content-card">
+            <div class="notice">
+              廉洁不是“不干事”，合规不是“不担当”。依法依规、实事求是、勤勉尽责、及时报告，同样是廉洁履职的重要内容。
+            </div>
+            <div class="lesson-list" id="commonLessonList"></div>
+          </div>
+        </section>
+ 
+        <section class="panel" id="panel-role">
+          <div class="section-title">
+            <div>
+              <h3>分岗位廉洁风险库</h3>
+              <p>根据组织登记岗位自动展示权责场景、风险点、防控措施和岗位红线。</p>
+            </div>
+            <button class="btn btn-primary no-print" id="completeRoleBtn">确认完成岗位学习</button>
+          </div>
+          <div id="roleContent"></div>
+        </section>
+ 
+
+        <section class="panel" id="panel-special">
+          <div class="section-title">
+            <div>
+              <h3>境外项目专项风险</h3>
+              <p>聚焦属地代理、商务接待、现金外币、属地用工、保密信息和报关清关。</p>
+            </div>
+          </div>
+          <div class="card-grid two" id="specialRiskGrid"></div>
+        </section>
+ 
+        <section class="panel" id="panel-quiz">
+          <div class="section-title">
+            <div>
+              <h3>岗位廉洁合规测评</h3>
+              <p>系统按照“通用纪律题 + 岗位专业题 + 境外场景题”生成试卷。</p>
+            </div>
+          </div>
+          <div class="content-card">
+            <div class="notice warning">
+              本测评用于学习和风险提示，不作为对个人廉洁状况的定性结论。红线题须全部掌握。
+            </div>
+            <div class="quiz-toolbar">
+              <div>
+                <strong id="quizRoleHint">当前岗位：未登记</strong>
+                <div class="muted">共 10 题，每题 10 分。</div>
+              </div>
+              <div>
+                <button class="btn btn-outline" id="buildQuizBtn">重新生成试卷</button>
+                <button class="btn btn-primary" id="submitQuizBtn">提交测评</button>
+              </div>
+            </div>
+            <form id="quizForm"></form>
+            <div id="quizResult"></div>
+          </div>
+        </section>
+ 
+        <section class="panel" id="panel-pledge">
+          <div class="section-title">
+            <div>
+              <h3>岗位廉洁合规承诺</h3>
+              <p>请完整阅读后勾选确认，并填写本人姓名和日期。</p>
+            </div>
+          </div>
+          <div class="pledge-paper">
+            <h3>岗位廉洁合规承诺书</h3>
+            <p style="text-align:center;">中交西安筑路机械有限公司吉国项目群党支部</p>
+            <p>本人郑重承诺：</p>
+            <ol id="pledgeList"></ol>
+            <div class="check-row">
+              <input type="checkbox" id="pledgeAgree" />
+              <label for="pledgeAgree">本人已逐条阅读并理解以上承诺，愿意对承诺内容负责，自觉接受组织和职工群众监督。</label>
+            </div>
+            <div class="signature-row">
+              <div class="field">
+                <label for="pledgeName">承诺人签名</label>
+                <input id="pledgeName" type="text" placeholder="请输入本人姓名" />
+              </div>
+              <div class="field">
+                <label for="pledgeDate">承诺日期</label>
+                <input id="pledgeDate" type="date" />
+              </div>
+            </div>
+            <div class="lesson-actions">
+              <button class="btn btn-primary" id="savePledgeBtn">提交承诺</button>
+            </div>
+          </div>
+        </section>
+ 
+        <section class="panel" id="panel-report">
+          <div class="section-title no-print">
+            <div>
+              <h3>个人学习报告</h3>
+              <p>报告可直接打印或另存为 PDF。</p>
+            </div>
+            <div>
+              <button class="btn btn-outline" id="exportJsonBtn">导出学习数据</button>
+              <button class="btn btn-primary" id="printReportBtn">打印学习报告</button>
+            </div>
+          </div>
+          <div id="reportContainer"></div>
+        </section>
+      </main>
+    </div>
+ 
+    <footer class="footer">
+      主办单位：中交西安筑路机械有限公司吉国项目群党支部 ｜ 适用项目：路面分公司吉国项目
+    </footer>
+  </div>
+ 
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+ 
+  <script>
+    "use strict";
+ 
+    const APP_KEY = "qingfeng_station_v2";
+ 
+    const roleOrder = [
+      "项目经理",
+      "项目副经理",
+      "总经济师",
+      "经营部长",
+      "财务部长",
+      "会计",
+      "翻译",
+      "报关主管",
+      "项目书记",
+      "安全部长",
+      "工程部长",
+      "物设部长"
+    ];
+
+ 
+    const roleData = {
+      "项目经理": {
+        icon: "🧑‍💼",
+        summary: "项目总体负责人，承担决策、资源配置、履约和风险防控的综合责任。",
+        duties: [
+          "组织项目总体决策、生产经营和重大事项报告",
+          "审定重大合同、分包、采购、资金安排和资源配置",
+          "统筹属地协调、安全质量、履约创效和队伍稳定",
+          "落实党风廉政建设、合规管理和一岗双责"
+        ],
+        risks: [
+          "个人或少数人决定重大事项，规避项目班子集体研究",
+          "干预招标采购、分包选择、合同定价和结算支付",
+          "超越授权对外承诺，先实施后审批或事后补程序",
+          "对关联单位、特定关系人给予特殊照顾",
+          "对重大亏损、安全质量问题和违规事项隐瞒不报",
+          "接受业务单位礼品、宴请、旅游或其他不当利益"
+        ],
+        controls: [
+          "严格执行三重一大、授权管理和重大事项报告制度",
+          "重大事项形成会议记录、决策依据和责任人员台账",
+          "本人或亲属与业务单位存在关联时主动报告并回避",
+          "合同、采购、验收和付款不得由一人控制全流程",
+          "定期听取经营、财务、工程、物设、安全和监督汇报",
+          "对异常价格、异常付款、重大变更和亏损事项专项复核"
+        ],
+        redlines: [
+          "不得绕过集体决策或授权程序决定重大事项",
+          "不得利用项目负责人身份为本人、亲属或关系人谋利",
+          "不得授意、默许虚假计量、虚假验收和违规支付",
+          "不得压制、隐瞒重大问题或打击报复反映问题人员"
+        ],
+        questions: [
+          {
+            q: "项目工期紧张，某重大分包事项尚未履行集体决策程序。项目经理最合规的做法是？",
+            options: ["先口头确定单位，后补会议纪要", "由项目经理个人决定并承担责任", "按授权和集体决策程序完成评审后实施，紧急情形同步履行报告和留痕", "让经营部门自行处理"],
+            answer: 2,
+            redline: true,
+            explain: "工期压力不能替代授权和集体决策程序；紧急事项也应依制度报告、决策并留痕。"
+          },
+          {
+            q: "项目经理发现某付款资料完整，但价格明显高于市场水平，应当如何处理？",
+            options: ["资料齐全即可付款", "要求专项复核价格形成依据、合同履约和验收情况", "让财务人员自行承担责任", "拆分为多笔付款"],
+            answer: 1,
+            redline: false,
+            explain: "项目负责人应对异常价格和重大资金风险组织复核，不能只看形式资料。"
+          }
+        ]
+      },
+      "项目副经理": {
+        icon: "🦺",
+        summary: "受授权分管施工生产、现场协调、分包管理、机械调度和进度组织。",
+        duties: [
+          "依据书面授权组织现场施工生产和资源调配",
+          "协调分包队伍、机械设备、人员和施工进度",
+          "监督现场工程量、设备台班和临时事项确认",
+          "履行分管领域安全质量、成本和廉洁责任"
+        ],
+        risks: [
+          "将授权理解为个人决定权，越权审批或口头承诺",
+          "虚增设备台班、人工数量和临时工程量",
+          "对特定分包队伍、机械出租方给予不当便利",
+          "要求业务人员事后补签、倒签或修改现场资料",
+          "为赶工期默许违章施工、材料浪费或质量缺陷",
+          "对现场异常不报告，导致风险扩大"
+        ],
+        controls: [
+          "明确书面授权的事项、额度、期限和报告要求",
+          "超出授权事项必须重新报批，不得口头替代程序",
+          "工程量、台班和人工考勤实行联合确认和交叉核验",
+          "禁止个人口头指定供应商、分包商和设备出租方",
+          "现场异常形成记录并及时向项目班子报告",
+          "分管业务定期开展风险复盘和抽查"
+        ],
+        redlines: [
+          "不得越权决定合同、价格、付款等重大事项",
+          "不得授意虚增工程量、台班和人工费用",
+          "不得为特定单位安排不公平的资源和结算便利",
+          "不得隐瞒现场安全质量和成本异常"
+        ],
+        questions: [
+          {
+            q: "项目副经理口头要求工程人员增加某分包队伍台班数量，但无现场记录。工程人员应当？",
+            options: ["按领导要求补签", "拒绝虚假确认，要求以真实记录和联合核验为依据", "先确认再向财务说明", "由分包队伍自行填写"],
+            answer: 1,
+            redline: true,
+            explain: "台班和工程量必须真实、可核验，任何口头指令都不能成为虚假确认的依据。"
+          },
+          {
+            q: "超出书面授权范围的现场资源采购，应当如何处理？",
+            options: ["以生产急需为由直接采购", "拆分金额后采购", "重新履行报批和采购程序", "让供应商先送货再说"],
+            answer: 2,
+            redline: false,
+            explain: "授权边界必须严格执行，超出范围应重新报批。"
+          }
+        ]
+      },
+      "总经济师": {
+        icon: "📊",
+        summary: "负责项目成本、合同、分包定价、计量结算、变更索赔和经济运行分析。",
+        duties: [
+          "组织成本测算、经济活动分析和经营风险预警",
+          "审核分包定价、合同条款、计量结算和变更索赔",
+          "统筹经营、工程、物设、财务数据交叉验证",
+          "向项目班子报告重大成本偏差和合同风险"
+        ],
+        risks: [
+          "泄露控制价、成本测算、报价和谈判底线",
+          "在分包限价、合同价格中照顾特定单位",
+
+          "虚增工程量、提高结算单价或确认无依据费用",
+          "拆分合同规避审批和竞争程序",
+          "变更索赔资料失真或选择性披露信息",
+          "隐瞒亏损、超成本和合同履约风险"
+        ],
+        controls: [
+          "成本测算、价格审批、合同签订和结算审核相互分离",
+          "重大分包价格实行集体评审并保存市场比价依据",
+          "计量与工程记录、材料消耗、设备台班和财务数据核验",
+          "合同变更说明依据、原因、责任和经济影响",
+          "建立合同履约、结算、索赔和成本预警台账",
+          "对异常单价、异常工程量和高频变更设置预警"
+        ],
+        redlines: [
+          "不得泄露控制价和商务谈判底线",
+          "不得为特定单位虚增工程量或提高结算价格",
+          "不得伪造、篡改变更索赔和经济分析资料",
+          "不得隐瞒重大亏损和合同风险"
+        ],
+        questions: [
+          {
+            q: "分包单位提出增加结算单价，但合同无调整依据。总经济师应当？",
+            options: ["为维护关系适当提高", "按真实履约、合同条款和审批程序审核，无依据不得调整", "让项目经理口头同意", "将增加部分列入其他费用"],
+            answer: 1,
+            redline: true,
+            explain: "结算价格必须依据合同和有效变更，不能以关系或口头同意代替。"
+          },
+          {
+            q: "控制价和谈判底线应如何管理？",
+            options: ["可向熟悉的供应商提前透露", "仅限授权人员知悉并做好权限和留痕管理", "谈判前在工作群公开", "由一人保存在个人手机中"],
+            answer: 1,
+            redline: false,
+            explain: "敏感商务信息应限定知悉范围并实现可追溯管理。"
+          }
+        ]
+      },
+      "经营部长": {
+        icon: "📑",
+        summary: "负责合同起草、分包采购、询比价、商务谈判、计量结算和经营档案。",
+        duties: [
+          "组织供应商和分包商询比价、评审及合同流程",
+          "负责合同文本、商务谈判、计量结算和变更资料",
+          "维护经营档案、报价记录和审批流程",
+          "监督合同履约并提示商务风险"
+        ],
+        risks: [
+          "虚假询价、陪标围标或选择性邀请",
+          "泄露其他单位报价、评审意见和谈判信息",
+          "与供应商、分包商串通操纵结果",
+          "先施工后签合同、倒签合同或隐瞒不利条款",
+          "重复计量、超合同计量和伪造签证结算资料",
+          "将应竞争采购的业务直接交给关系单位"
+        ],
+        controls: [
+          "供应商准入、询价、评审和审批过程完整留痕",
+          "报价资料实行权限控制，谈判原则上两人以上参加",
+          "合同签订前完成经济、法律合规和授权审查",
+          "未签合同原则上不得进场，紧急事项依制度办理",
+          "结算由经营、工程、物设和财务多部门核对",
+          "建立合同、变更、计量、结算和付款关联台账"
+        ],
+        redlines: [
+          "不得泄露报价、标底和评审信息",
+          "不得组织虚假询价、串标围标和陪标",
+          "不得伪造合同、签证、计量和结算资料",
+          "不得绕过竞争程序将业务交给关系单位"
+        ],
+        questions: [
+          {
+            q: "某供应商要求经营人员告知其他单位报价，以便其调整报价。正确处理是？",
+            options: ["只透露大致区间", "拒绝泄露并保存沟通记录，必要时报告", "收取咨询费后告知", "向所有供应商公开"],
+            answer: 1,
+            redline: true,
+            explain: "报价属于敏感商务信息，泄露会破坏公平竞争并形成廉洁风险。"
+          },
+          {
+            q: "紧急施工需要先行实施时，经营部门应如何降低风险？",
+            options: ["先干完再签合同", "由经办人口头承诺价格", "按紧急事项制度履行报告、授权、价格依据和过程留痕", "不留任何书面记录"],
+            answer: 2,
+            redline: false,
+            explain: "紧急不等于无程序，应依据制度履行必要授权和留痕。"
+          }
+        ]
+      },
+      "财务部长": {
+        icon: "💳",
+        summary: "负责资金计划、银行账户、外币资金、税务、支付审核和财务风险管理。",
+        duties: [
+          "统筹资金计划、账户管理、外币和现金管理",
+          "审核合同、验收、发票、审批和付款条件",
+          "组织税务、财务报告、银行对账和资金盘点",
+          "识别异常付款并向项目负责人报告"
+        ],
+        risks: [
+          "未经审批支付资金或使用个人账户周转",
+          "违规大额现金支付、账外收支和长期备用金",
+          "依据虚假合同、发票、验收或报关资料付款",
+          "重复报销、超标准报销和个人消费入账",
+          "擅自改变资金用途或拆分付款规避审批",
+          "外币兑换、汇率折算和手续费不透明"
+        ],
+        controls: [
+          "账户、印鉴、网银密钥、制单和复核岗位分离",
+          "付款前核验合同、验收、发票、审批和收款账户",
+          "大额资金实行分级审批和异常付款复核",
+          "定期银行对账、现金盘点和备用金清理",
+          "境外现金设置限额、日清月结和用途凭证",
+          "付款对象、合同主体和收款账户保持一致"
+        ],
+        redlines: [
+
+          "不得使用个人账户收付项目资金",
+          "不得依据虚假、不完整资料付款",
+          "不得设置账外资金或隐匿资金收支",
+          "不得擅自改变资金用途或拆分规避审批"
+        ],
+        questions: [
+          {
+            q: "供应商要求将合同款支付至其员工个人账户。财务部门应当？",
+            options: ["金额不大可以支付", "要求收款账户与合同主体一致，异常情况按制度核验审批", "分两笔支付", "让经办人写一张说明即可"],
+            answer: 1,
+            redline: true,
+            explain: "收款账户异常是高风险信号，应核验主体、授权和合法依据。"
+          },
+          {
+            q: "境外备用金长期未清，应采取什么措施？",
+            options: ["继续增加额度", "定期清理、核验用途、追回余额并完善凭证", "转为个人借款长期挂账", "不影响项目即可"],
+            answer: 1,
+            redline: false,
+            explain: "长期挂账会掩盖资金风险，应及时清理和核验。"
+          }
+        ]
+      },
+      "会计": {
+        icon: "🧾",
+        summary: "负责凭证审核、账务处理、费用报销、往来核算、银行对账和会计档案。",
+        duties: [
+          "审核原始凭证的真实性、合法性和完整性",
+          "完成账务处理、费用报销和往来核算",
+          "参与银行对账、备用金清理和成本归集",
+          "保管会计档案并报告异常事项"
+        ],
+        risks: [
+          "接受白条、假发票或不完整凭证入账",
+          "重复报销、跨项目报销和个人消费列支",
+          "修改凭证日期、金额、用途或人为调节成本",
+          "帮助他人规避财务审批和授权要求",
+          "对异常资金流、长期挂账和重复付款不报告",
+          "会计档案缺失、私自带离、删除或销毁"
+        ],
+        controls: [
+          "坚持业务真实、票据真实、审批完整和用途明确",
+          "建立重复报销、重复付款和发票查验机制",
+          "定期清理备用金、个人借款和往来款",
+          "银行对账人与付款操作人适当分离",
+          "发现异常凭证及时退回并记录原因",
+          "会计档案按制度归档并设置访问权限"
+        ],
+        redlines: [
+          "不得编制、接受或报销虚假凭证",
+          "不得帮助他人规避审批、掩盖个人消费",
+          "不得篡改账务和会计档案",
+          "不得对明显异常资金事项隐瞒不报"
+        ],
+        questions: [
+          {
+            q: "某报销单审批齐全，但发票内容与实际业务不一致。会计应当？",
+            options: ["审批齐全即可入账", "退回补正并核实真实业务，不得以审批代替真实性审核", "先入账年底再调", "由报销人写保证书"],
+            answer: 1,
+            redline: true,
+            explain: "会计审核不仅看签字，还要核验经济业务和票据真实性。"
+          },
+          {
+            q: "发现同一张发票可能被重复报销，正确做法是？",
+            options: ["金额小可以忽略", "暂停处理，核验系统和原始凭证并记录结果", "两次都入账", "删除其中一次记录即可"],
+            answer: 1,
+            redline: false,
+            explain: "重复报销应暂停并核验，处理过程也要留痕。"
+          }
+        ]
+      },
+      "翻译": {
+        icon: "🌐",
+        summary: "境外合同、外事、政府沟通和商务谈判中的信息闸口与语言桥梁。",
+        duties: [
+          "准确完成合同文件、会议和对外函件翻译",
+          "协助政府、海关、税务、劳务和商务沟通",
+          "形成重要会议中外文纪要和文件版本记录",
+          "保护合同价格、成本、人员和技术等信息"
+        ],
+        risks: [
+          "故意遗漏、改变或弱化重要内容",
+          "未经授权代表项目作出价格、工期或责任承诺",
+          "泄露合同价格、成本、谈判底线和人员信息",
+          "私下充当供应商、代理人或项目人员中介",
+          "接受外部单位报酬、礼品或其他利益",
+          "利用语言优势选择性汇报，制造信息不对称"
+        ],
+        controls: [
+          "重要合同、索赔、报关和政府文件实行复核",
+          "重大会议形成中外文纪要并由相关人员确认",
+          "不得擅自作出价格、工期、付款和责任承诺",
+          "敏感文件限定知悉范围并保留翻译版本记录",
+          "与供应商、代理商存在私人关系时主动报告",
+          "重要口头事项及时转化为书面记录"
+        ],
+        redlines: [
+          "不得故意歪曲、遗漏或隐瞒重要信息",
+          "不得越权代表项目作出承诺",
+          "不得泄露商业秘密和个人信息",
+          "不得利用语言优势收取中介费或谋取利益"
+        ],
+        questions: [
+          {
+            q: "属地供应商请翻译人员私下传递项目谈判底线，并承诺给予好处。翻译人员应当？",
+            options: ["只透露非关键部分", "拒绝、保留必要记录并向项目报告", "收下好处但不承诺", "让同事代为透露"],
+            answer: 1,
+            redline: true,
+            explain: "翻译岗位掌握敏感信息，应严格保密并报告利益诱导。"
+          },
+          {
+
+            q: "重要会议中出现可能影响合同责任的表述，翻译后应当？",
+            options: ["只靠记忆即可", "形成中外文纪要并请相关方确认", "不记录以免产生责任", "由翻译人员个人保存"],
+            answer: 1,
+            redline: false,
+            explain: "重要事项应书面化、双语化、可追溯。"
+          }
+        ]
+      },
+      "报关主管": {
+        icon: "🚢",
+        summary: "负责设备物资进出口、报关资料、商品归类、税费和报关代理管理。",
+        duties: [
+          "审核合同、发票、装箱单、原产地和申报资料",
+          "组织商品归类、货值申报、税费缴纳和核销",
+          "管理报关代理和清关服务合同",
+          "协调海关事项并保留完整业务记录"
+        ],
+        risks: [
+          "低报、瞒报、错报货值、数量和商品编码",
+          "使用虚假合同、发票、装箱单或原产地资料",
+          "与报关代理串通虚增服务费和所谓协调费",
+          "现金支付无合法凭证或收款主体不明",
+          "到货与申报资料不一致而不报告",
+          "违规处置暂时进口设备或保税物资"
+        ],
+        controls: [
+          "报关资料由业务、物设和财务交叉核验",
+          "报关代理实行准入审查、合同管理和服务评价",
+          "服务费、税费及其他费用分别列示并核验依据",
+          "不得支付无合同、无票据、无明确用途费用",
+          "建立进出口、到货、税费、核销和设备处置台账",
+          "重大异常及时报告，通过合法渠道处理"
+        ],
+        redlines: [
+          "不得伪造或授意伪造报关资料",
+          "不得以协调名义支付无依据费用",
+          "不得与代理机构串通虚增费用",
+          "不得隐瞒货物、设备和申报数据不一致"
+        ],
+        questions: [
+          {
+            q: "报关代理称支付一笔无票据“协调费”即可提前清关。正确处理是？",
+            options: ["工期紧张可以支付", "要求合法收费依据，核验主体并按制度报告，不得私下支付", "让翻译人员个人垫付", "拆分为多笔现金"],
+            answer: 1,
+            redline: true,
+            explain: "无依据协调费具有高风险，应拒绝私下支付并通过合法合规渠道处理。"
+          },
+          {
+            q: "发现设备实际型号与报关资料不一致，应当？",
+            options: ["只要能通关就不处理", "立即暂停相关流程，核验并按规定更正和报告", "修改现场铭牌", "让代理自行决定"],
+            answer: 1,
+            redline: false,
+            explain: "申报资料必须真实一致，异常应及时核验、更正和报告。"
+          }
+        ]
+      },
+      "项目书记": {
+        icon: "🚩",
+        summary: "负责党建、思想政治、廉洁教育监督、谈话提醒和项目政治生态建设。",
+        duties: [
+          "落实项目党风廉政建设责任和一岗双责",
+          "组织廉洁教育、谈话提醒、监督检查和问题整改",
+          "参与重大事项监督，推动权力规范运行",
+          "维护职工合法权益和项目队伍稳定"
+        ],
+        risks: [
+          "只抓学习不监督业务流程，党建业务两张皮",
+          "对苗头性问题不提醒、不报告或失之于宽软",
+          "选择性开展谈话、监督和问题处置",
+          "党费、党建经费和活动经费使用不规范",
+          "评优评先、人员评价中徇私照顾",
+          "对群众反映问题压而不报或打击报复"
+        ],
+        controls: [
+          "对项目班子和关键岗位定期开展廉洁谈话",
+          "将监督嵌入采购、分包、结算和资金等重点环节",
+          "建立问题、提醒、整改和销号台账",
+          "重大事项参与监督但不替代业务部门履职",
+          "党费和党建经费严格执行预算、审批和公开要求",
+          "拓宽职工反映渠道并保护反映问题人员"
+        ],
+        redlines: [
+          "不得压制、隐瞒或选择性处理问题线索",
+          "不得利用监督权为个人或特定人员谋利",
+          "不得违规使用党费、党建经费和活动经费",
+          "不得以监督名义干预正常经营决策"
+        ],
+        questions: [
+          {
+            q: "职工反映某采购存在利益关联，但证据尚不完整。项目书记应当？",
+            options: ["直接压下避免影响项目", "按程序登记、核实、提醒并保护反映人员", "把反映人信息告诉被反映人", "等问题扩大后再处理"],
+            answer: 1,
+            redline: true,
+            explain: "苗头问题应及时登记核实，既不能压制，也不能随意扩散信息。"
+          },
+          {
+            q: "项目党组织参与重大事项监督时，应把握什么边界？",
+            options: ["替代经营部门作出专业决定", "监督程序、纪律和责任落实，不替代业务部门履职", "只参加会议不发表意见", "直接指定供应商"],
+            answer: 1,
+            redline: false,
+            explain: "监督应嵌入业务但不替代业务责任。"
+          }
+        ]
+      },
+      "安全部长": {
+        icon: "⛑️",
+        summary: "负责安全制度、教育培训、特种作业、劳保、安全费用、隐患和事故管理。",
+        duties: [
+          "组织安全培训、检查、危险作业审批和应急管理",
+          "审核分包安全资质、人员资格和劳保用品",
+
+          "管理安全费用、隐患整改和事故报告",
+          "对不具备安全条件的作业提出停止要求"
+        ],
+        risks: [
+          "虚假培训、虚假签字、虚假检查和纸面整改",
+          "劳保用品以次充好或采购验收失真",
+          "安全费用被挤占、挪用或虚假列支",
+          "对分包资质和特种作业资格把关不严",
+          "收受利益后降低检查标准或默许违章",
+          "隐瞒、迟报、漏报事故和重大险情"
+        ],
+        controls: [
+          "培训保留人员、时间、内容、影像和考核资料",
+          "劳保用品采购、验收和发放岗位相互制约",
+          "隐患整改明确责任人、期限、复查和销号",
+          "重大危险作业执行审批、交底和旁站监督",
+          "安全费用单独核算并核验真实用途",
+          "事故和险情按制度及时、真实、完整报告"
+        ],
+        redlines: [
+          "不得伪造培训、检查和整改资料",
+          "不得隐瞒、迟报或漏报事故险情",
+          "不得收受利益后降低安全标准",
+          "不得挤占、挪用或虚假列支安全费用"
+        ],
+        questions: [
+          {
+            q: "现场隐患未整改，但资料上已签字销号。安全人员应当？",
+            options: ["资料完整即可", "立即纠正虚假销号，现场复查整改后再闭环", "等下次检查再处理", "让分包队伍自行决定"],
+            answer: 1,
+            redline: true,
+            explain: "隐患闭环必须以现场真实整改为基础，严禁纸面整改。"
+          },
+          {
+            q: "赶工期间发现作业条件不安全，安全部长应当？",
+            options: ["先施工后整改", "依职责要求停止或暂停作业并报告", "只进行口头提醒", "由施工人员自行判断"],
+            answer: 1,
+            redline: false,
+            explain: "安全底线不能以工期替代，应立即采取控制措施。"
+          }
+        ]
+      },
+      "工程部长": {
+        icon: "📐",
+        summary: "负责施工方案、工程量、技术交底、设计变更、质量验收和工程资料。",
+        duties: [
+          "组织施工方案、技术交底和工程质量控制",
+          "确认工程量、隐蔽工程、现场签证和设计变更",
+          "形成真实、完整、可追溯的工程技术资料",
+          "与经营、物设、财务开展数据交叉核验"
+        ],
+        risks: [
+          "虚增、重复确认工程量或不实现场签证",
+          "对不合格工程签署验收意见",
+          "未经审批擅自变更设计、方案和材料标准",
+          "事后补签、倒签或篡改技术验收资料",
+          "与分包单位串通提高计量或掩盖质量缺陷",
+          "隐蔽工程无影像、无实测和无联合确认"
+        ],
+        controls: [
+          "工程量实行现场实测、联合签认和数据复核",
+          "隐蔽工程保留影像、坐标、实测和验收记录",
+          "设计变更执行申请、论证、审批和实施程序",
+          "技术人员不得单独完成计量、验收和结算全流程",
+          "不合格工程整改合格后方可验收和计量",
+          "工程资料与结算、材料消耗、台班记录相互核验"
+        ],
+        redlines: [
+          "不得虚增、重复确认工程量",
+          "不得对不合格工程签署合格验收",
+          "不得伪造、倒签和篡改工程资料",
+          "不得未经审批擅自变更设计和材料标准"
+        ],
+        questions: [
+          {
+            q: "隐蔽工程已覆盖，但缺少实测和影像资料。工程人员应当？",
+            options: ["根据经验补填数据", "按制度组织核验，无法核实时不得虚假确认", "让分包单位自行出具证明", "直接进入结算"],
+            answer: 1,
+            redline: true,
+            explain: "隐蔽工程必须可核验，不能以经验或单方证明替代真实资料。"
+          },
+          {
+            q: "设计变更可能增加成本，工程部门首先应当？",
+            options: ["现场直接实施", "履行变更申请、技术论证、经济评估和审批程序", "仅通知分包单位", "施工结束后补签"],
+            answer: 1,
+            redline: false,
+            explain: "变更需技术与经济协同评估并履行审批。"
+          }
+        ]
+      },
+      "物设部长": {
+        icon: "🚜",
+        summary: "负责供应商、物资采购、设备租赁、到货验收、仓储、油料和废旧物资。",
+        duties: [
+          "组织物资设备需求、询比价、采购和租赁流程",
+          "负责到货验收、仓储领用、油料和维修配件管理",
+          "开展供应商准入、评价和市场价格比对",
+          "组织废旧物资和剩余材料规范处置"
+        ],
+        risks: [
+          "指定供应商、虚假询价、价格虚高和利益输送",
+          "采购数量虚增、到货不足或以次充好",
+          "采购、验收、保管由同一人控制",
+          "虚构设备维修、配件更换和设备台班",
+          "油料跑冒滴漏、私自倒卖和消耗异常",
+          "废旧物资、剩余材料私下低价处置"
+        ],
+        controls: [
+          "需求、采购、验收、保管和付款岗位相互制约",
+          "建立合格供应商名录和动态履约评价",
+
+          "采购价格进行市场比对并保存形成依据",
+          "到货实行数量、质量、规格和资料联合验收",
+          "油料实行设备定额、加油记录和消耗分析",
+          "维修保留故障、配件、工时和验收记录",
+          "废旧物资处置执行评估、审批、公开和款项入账"
+        ],
+        redlines: [
+          "不得指定关系供应商或操纵询比价",
+          "不得虚假验收、虚增数量和以次充好",
+          "不得虚构维修、台班和油料消耗",
+          "不得私自处置废旧物资和剩余材料"
+        ],
+        questions: [
+          {
+            q: "仓库验收发现到货数量不足，但供应商请求按合同数量签收。正确做法是？",
+            options: ["后续补货即可先签", "按实际数量验收记录并报告差异", "由供应商写承诺后全额签收", "不留记录私下解决"],
+            answer: 1,
+            redline: true,
+            explain: "验收必须反映真实到货情况，差异应记录并按合同处理。"
+          },
+          {
+            q: "废旧物资处置的合规做法是？",
+            options: ["由保管员自行出售", "评估、审批、公开处置、全程留痕并将款项入账", "低价卖给熟悉的供应商", "以现金方式不入账"],
+            answer: 1,
+            redline: false,
+            explain: "废旧物资属于国有资产，应规范评估、审批和入账。"
+          }
+        ]
+      }
+    };
+ 
+    const commonLessons = [
+      {
+        title: "第一课：境外项目为什么必须讲廉洁合规",
+        points: [
+          "境外项目同时承担生产经营责任、政治责任、社会责任和国有资产保值增值责任。",
+          "廉洁合规的目的不是限制经营，而是保护干部、保护员工、保护项目和企业声誉。",
+          "境外项目存在监管距离长、授权链条长、属地关系复杂、现金外币业务多等特点，更需要程序规范和过程留痕。",
+          "项目人员既要遵守中国党纪法规和企业制度，也要遵守项目所在国法律法规、监管规定和社会习俗。"
+        ]
+      },
+      {
+        title: "第二课：正确认识手中的岗位权力",
+        points: [
+          "项目岗位可能掌握决策权、审批权、采购选择权、谈判权、计量确认权、验收签字权、付款审核权、信息掌握权和对外协调权。",
+          "岗位权力只能在职责、授权、程序和监督机制内使用，不能转化为个人资源。",
+          "不得利用信息差、语言差、地域差和监管距离为本人、亲属、关系人或特定单位谋利。",
+          "对超越授权、程序缺失、资料异常和利益冲突事项，应当及时报告、回避和纠正。"
+        ]
+      },
+      {
+        title: "第三课：境外项目必须守住的十条红线",
+        points: [
+          "不得绕过集体决策，个人决定重大事项；不得拆分合同、拆分采购规避审批。",
+          "不得泄露标底、报价、成本、谈判底线和供应商信息。",
+          "不得虚报工程量、材料数量、设备台班、人工和费用。",
+          "不得签署虚假合同、验收、计量、报关、结算和付款资料。",
+          "不得收受业务关联方财物、宴请、旅游和其他不当利益。",
+          "不得通过本人、亲属或特定关系人承揽项目业务。",
+          "不得使用个人账户收付项目资金，不得设置账外资金。",
+          "不得隐瞒安全、质量、劳务、环保和经营亏损问题。",
+          "不得以属地惯例、协调需要为由实施违规支付。",
+          "不得删除、篡改、隐匿业务资料或打击报复反映问题人员。"
+        ]
+      },
+      {
+        title: "第四课：廉洁从业与担当履职相统一",
+        points: [
+          "依法依规、实事求是、履职尽责、及时决策、主动解决问题，是廉洁履职的重要组成部分。",
+          "不能以合规为借口推诿扯皮，也不能以担当为名突破纪律和制度底线。",
+          "对形式主义、虚假整改、隐瞒问题、拖欠应付款项、损害职工权益等失职行为同样需要警惕。",
+          "遇到复杂或紧急事项，应依制度启动紧急程序、及时报告、集体研究并完整留痕。"
+        ]
+      },
+      {
+        title: "第五课：如何报告和处置廉洁合规问题",
+        points: [
+          "发现苗头性问题，应及时提醒、制止并记录；发现重大问题，应依制度逐级报告。",
+          "发现本人或亲属利益冲突，应主动报告并申请回避。",
+          "发现资料错误应立即纠正，不得继续流转或要求他人补造资料。",
+          "对明显违规指令有权提出异议，并保留必要的沟通和工作记录。",
+          "不得删除、篡改、隐匿资料，不得对反映问题人员打击报复。",
+          "问题处置应形成提醒、整改、复核、销号和责任落实闭环。"
+        ]
+      }
+    ];
+ 
+    const specialRisks = [
+      {
+        icon: "🤝",
+        title: "属地代理和中介",
+        desc: "报关代理、劳务中介、设备中介、顾问和外部协调人员必须有真实业务需要、明确服务成果、合理收费标准和可核验履约记录。",
+        red: "不得通过第三方实施利益输送，不得支付无法说明服务内容和合法依据的费用。"
+      },
+      {
+        icon: "🎁",
+        title: "礼品、宴请与商务接待",
+        desc: "区分正常商务礼仪与可能影响公正履职的不当利益，接待应真实、必要、适度、审批完整并留存依据。",
+        red: "不得接受供应商安排的旅游、娱乐、私人消费和可能影响履职的礼品礼金。"
+      },
+      {
+        icon: "💵",
+        title: "现金和外币",
+        desc: "境外现金设置限额、日清月结和用途凭证；外币兑换保留汇率、渠道和手续费依据；备用金定期清理。",
+        red: "不得使用个人账户周转项目资金，不得现金收支不入账或使用非正规渠道转移资金。"
+      },
+      {
+        icon: "👷",
+        title: "属地用工和劳务",
+        desc: "人员身份、合同、考勤、工资和支付记录相互印证，尊重当地员工合法权益并及时处理劳务纠纷。",
+
+        red: "不得虚报人员、克扣工资、通过中间人截留费用或隐瞒劳务纠纷。"
+      },
+      {
+        icon: "🔐",
+        title: "保密和信息",
+        desc: "投标报价、成本利润、谈判底线、采购价格、技术资料、个人信息和纠纷索赔资料均应分级分类管理。",
+        red: "不得通过个人社交账号擅自外传敏感资料，不得向无授权人员泄露商业秘密。"
+      },
+      {
+        icon: "🛃",
+        title: "报关清关与属地监管",
+        desc: "申报货值、数量、商品编码、税费和到货信息保持真实一致，异常事项通过合法渠道核验、报告和更正。",
+        red: "不得伪造报关资料，不得支付无依据协调费，不得隐瞒货物与申报数据差异。"
+      }
+    ];
+ 
+    const pledgeItems = [
+      "严格遵守党纪国法、企业规章制度和项目所在国相关法律法规，自觉维护国家利益、企业利益和项目声誉。",
+      "严格按照岗位职责和授权范围履职，不越权决策，不违规审批，不绕过程序，不以口头指令替代规定流程。",
+      "严格执行重大事项集体决策、合同管理、采购管理、计量结算、资金支付和验收管理制度，不弄虚作假，不暗箱操作。",
+      "不利用职务便利为本人、亲属、特定关系人或特定单位谋取不正当利益，不接受业务关联方可能影响公正履职的财物、宴请、旅游及其他利益。",
+      "不虚报工程量、材料、设备台班、人员考勤和费用，不签署虚假合同、验收、报关、计量、结算和财务资料。",
+      "严格遵守保密规定，不泄露项目合同价格、成本数据、谈判底线、技术资料和其他商业秘密。",
+      "发现利益冲突主动报告、主动回避；发现违规问题及时提醒、制止和报告，不隐瞒、不包庇、不授意他人违规。",
+      "自觉接受党组织、项目班子、职能部门、职工群众以及审计监督，认真整改发现的问题。",
+      "坚持廉洁与担当统一，依法依规、实事求是、勤勉尽责，维护国有资产安全和境外项目高质量履约。"
+    ];
+ 
+    const commonQuestions = [
+      {
+        q: "发现本人亲属正在参与项目供应业务，最合规的做法是？",
+        options: ["只要价格合理无需报告", "主动报告关联关系并申请回避", "让同事代为签字即可", "不参与付款就没有风险"],
+        answer: 1,
+        redline: true,
+        type: "通用纪律题",
+        explain: "利益冲突应主动报告并回避，不能以价格合理或换人签字掩盖关联关系。"
+      },
+      {
+        q: "供应商送来礼品并表示只是当地礼节，正确做法是？",
+        options: ["金额不大可以收下", "根据制度拒收；无法拒收时登记、报告并按规定处理", "先收下以后退回", "转送给同事即可"],
+        answer: 1,
+        redline: true,
+        type: "通用纪律题",
+        explain: "属地礼节不能突破企业制度，无法拒收时应按制度登记报告。"
+      },
+      {
+        q: "领导口头要求修改已经确认的业务数据，工作人员应当？",
+        options: ["按领导要求修改", "核验事实和依据，对违规要求提出异议并保留记录", "先改后说", "删除原始记录"],
+        answer: 1,
+        redline: true,
+        type: "通用纪律题",
+        explain: "任何口头指令都不能成为篡改真实业务数据的依据。"
+      },
+      {
+        q: "项目重大事项最稳妥的管理方式是？",
+        options: ["由一把手快速决定", "按授权和集体决策程序研究，形成完整记录", "由经办人员私下协商", "事后补一份会议纪要"],
+        answer: 1,
+        redline: false,
+        type: "通用纪律题",
+        explain: "重大事项应按授权和集体决策程序办理，并保留真实完整记录。"
+      },
+      {
+        q: "发现业务资料存在错误，但流程已经进入付款环节，应当？",
+        options: ["金额不大继续付款", "立即暂停、核实、纠正并重新履行必要流程", "付款后再改资料", "删除错误页即可"],
+        answer: 1,
+        redline: false,
+        type: "通用纪律题",
+        explain: "发现错误应立即纠正，不能让错误资料继续流转。"
+      },
+      {
+        q: "下列哪项最能体现廉洁与担当统一？",
+        options: ["所有事项都不表态", "严格按程序积极解决问题并及时报告风险", "为赶工突破制度", "把责任全部交给下属"],
+        answer: 1,
+        redline: false,
+        type: "通用纪律题",
+        explain: "合规履职既要守程序，也要积极负责解决问题。"
+      },
+      {
+        q: "对反映廉洁问题的职工，应当如何对待？",
+        options: ["公开其身份接受质询", "保护其合法权益，按程序核实处理，不得打击报复", "调离岗位以免影响工作", "要求其撤回反映"],
+        answer: 1,
+        redline: true,
+        type: "通用纪律题",
+        explain: "应保护反映问题人员，不得泄露、打击或报复。"
+      },
+      {
+        q: "对涉及合同价格、成本和谈判底线的信息，应当？",
+        options: ["方便工作可在大群共享", "按照权限和工作需要限定知悉范围并保留记录", "可以告诉关系好的供应商", "存入个人公开网盘"],
+        answer: 1,
+        redline: false,
+        type: "通用纪律题",
+        explain: "敏感商务信息应按最小必要原则管理。"
+      }
+    ];
+ 
+    const scenarioQuestions = [
+      {
+        q: "当地中介称只要支付一笔现金“关系维护费”，就能解决政府审批。正确处理是？",
+        options: ["只要能解决问题即可", "要求明确合法服务内容和收费依据，按制度审查报告，不得私下支付", "由员工个人垫付", "拆分成多笔报销"],
+        answer: 1,
+        redline: true,
+        type: "境外场景题",
+        explain: "模糊的关系维护费可能构成违规支付和利益输送，应核验合法性和真实服务。"
+      },
+      {
+        q: "属地员工工资表与考勤人数不一致，负责人员应当？",
+        options: ["按工资表支付", "暂停支付并核验合同、身份、考勤和收款信息", "由劳务中介保证即可", "差额作为管理费处理"],
+        answer: 1,
+        redline: false,
+        type: "境外场景题",
+
+        explain: "属地用工数据应相互印证，异常必须核实。"
+      },
+      {
+        q: "因时差和网络不便，项目拟借用员工个人银行卡周转资金。正确做法是？",
+        options: ["临时借用可以", "不得使用个人账户，应通过企业批准的账户和渠道办理", "只要写借条即可", "金额小可以不入账"],
+        answer: 1,
+        redline: true,
+        type: "境外场景题",
+        explain: "项目资金不得通过个人账户周转，应使用批准的企业账户和渠道。"
+      },
+      {
+        q: "某重要双语合同中两个语言版本责任条款含义不一致，应当？",
+        options: ["直接选择对项目有利的理解", "组织翻译、业务和专业人员复核，明确优先语言和最终文本", "由翻译人员个人决定", "签署后再处理"],
+        answer: 1,
+        redline: false,
+        type: "境外场景题",
+        explain: "重要合同文本差异应在签署前复核并明确效力规则。"
+      },
+      {
+        q: "供应商邀请项目人员参加周末旅游并承担费用，称与业务无关。应当？",
+        options: ["周末私人时间可以参加", "拒绝可能影响公正履职的安排并按需报告", "参加后不拍照即可", "由家属参加"],
+        answer: 1,
+        redline: true,
+        type: "境外场景题",
+        explain: "业务关联方承担的旅游和娱乐可能形成不当利益。"
+      },
+      {
+        q: "外币兑换手续费明显高于市场水平，最合理的处理是？",
+        options: ["属地特殊无需核验", "比较正规渠道报价，核验汇率、手续费和审批记录", "由经办人自行决定", "改为现金交易不留记录"],
+        answer: 1,
+        redline: false,
+        type: "境外场景题",
+        explain: "外币业务应透明、可比价、可追溯。"
+      }
+    ];
+ 
+    const defaultState = {
+      profile: {
+        name: "",
+        department: "路面分公司吉国项目",
+        role: "项目经理",
+        employeeNo: "",
+        note: ""
+      },
+      commonCompleted: [],
+      roleCompleted: false,
+      quiz: {
+        questions: [],
+        answers: {},
+        score: null,
+        correct: 0,
+        redlineTotal: 0,
+        redlineCorrect: 0,
+        wrongIndexes: [],
+        completedAt: ""
+      },
+      pledge: {
+        agreed: false,
+        name: "",
+        date: "",
+        completedAt: ""
+      },
+      updatedAt: ""
+    };
+ 
+    let state = loadState();
+ 
+    const els = {
+      sidebar: document.getElementById("sidebar"),
+      mobileNavToggle: document.getElementById("mobileNavToggle"),
+      miniName: document.getElementById("miniName"),
+      miniRole: document.getElementById("miniRole"),
+      nameInput: document.getElementById("nameInput"),
+      departmentInput: document.getElementById("departmentInput"),
+      roleSelect: document.getElementById("roleSelect"),
+      employeeNoInput: document.getElementById("employeeNoInput"),
+      noteInput: document.getElementById("noteInput"),
+      commonLessonList: document.getElementById("commonLessonList"),
+      roleContent: document.getElementById("roleContent"),
+      specialRiskGrid: document.getElementById("specialRiskGrid"),
+      quizForm: document.getElementById("quizForm"),
+      quizResult: document.getElementById("quizResult"),
+      quizRoleHint: document.getElementById("quizRoleHint"),
+      pledgeList: document.getElementById("pledgeList"),
+      pledgeAgree: document.getElementById("pledgeAgree"),
+      pledgeName: document.getElementById("pledgeName"),
+      pledgeDate: document.getElementById("pledgeDate"),
+      reportContainer: document.getElementById("reportContainer"),
+      toast: document.getElementById("toast")
+    };
+ 
+    function cloneDefaultState() {
+      return JSON.parse(JSON.stringify(defaultState));
+    }
+ 
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(APP_KEY);
+        if (!raw) return cloneDefaultState();
+        const saved = JSON.parse(raw);
+        return {
+          ...cloneDefaultState(),
+          ...saved,
+          profile: { ...defaultState.profile, ...(saved.profile || {}) },
+          quiz: { ...defaultState.quiz, ...(saved.quiz || {}) },
+          pledge: { ...defaultState.pledge, ...(saved.pledge || {}) }
+        };
+      } catch (error) {
+        console.error("读取本地数据失败：", error);
+        return cloneDefaultState();
+
+      }
+    }
+ 
+    function saveState(showMessage = true) {
+      try {
+        state.updatedAt = new Date().toISOString();
+        localStorage.setItem(APP_KEY, JSON.stringify(state));
+        if (showMessage) showToast("学习进度已保存在当前浏览器。", "success");
+      } catch (error) {
+        console.error("保存失败：", error);
+        showToast("保存失败，请检查浏览器存储权限。", "error");
+      }
+    }
+ 
+    function showToast(message, type = "info") {
+      els.toast.textContent = message;
+      if (type === "error") els.toast.style.background = "#b42318";
+      else if (type === "success") els.toast.style.background = "#067647";
+      else els.toast.style.background = "#101828";
+      els.toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => els.toast.classList.remove("show"), 2600);
+    }
+ 
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+ 
+    function formatDateTime(iso) {
+      if (!iso) return "未完成";
+      const date = new Date(iso);
+      if (Number.isNaN(date.getTime())) return iso;
+      return date.toLocaleString("zh-CN", { hour12: false });
+    }
+ 
+    function todayString() {
+      const d = new Date();
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+ 
+    function shuffle(array) {
+      const copy = [...array];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+ 
+    function switchPanel(panelName) {
+      document.querySelectorAll(".panel").forEach(panel => panel.classList.remove("active"));
+      document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.remove("active"));
+      const panel = document.getElementById(`panel-${panelName}`);
+      const nav = document.querySelector(`.nav-btn[data-panel="${panelName}"]`);
+      if (panel) panel.classList.add("active");
+      if (nav) nav.classList.add("active");
+      if (window.innerWidth <= 1080) els.sidebar.classList.remove("open");
+      if (panelName === "report") renderReport();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+ 
+    function renderRoleOptions() {
+      els.roleSelect.innerHTML = roleOrder
+        .map(role => `<option value="${escapeHtml(role)}">${escapeHtml(role)}</option>`)
+        .join("");
+    }
+ 
+    function fillProfileForm() {
+      const p = state.profile;
+      els.nameInput.value = p.name || "";
+      els.departmentInput.value = p.department || "路面分公司吉国项目";
+      els.roleSelect.value = roleOrder.includes(p.role) ? p.role : roleOrder[0];
+      els.employeeNoInput.value = p.employeeNo || "";
+      els.noteInput.value = p.note || "";
+      els.pledgeName.value = state.pledge.name || p.name || "";
+      els.pledgeDate.value = state.pledge.date || todayString();
+      els.pledgeAgree.checked = Boolean(state.pledge.agreed);
+    }
+ 
+    function readProfileForm() {
+      return {
+        name: els.nameInput.value.trim(),
+        department: els.departmentInput.value.trim() || "路面分公司吉国项目",
+        role: els.roleSelect.value,
+        employeeNo: els.employeeNoInput.value.trim(),
+        note: els.noteInput.value.trim()
+      };
+    }
+ 
+    function updateMiniProfile() {
+      const p = state.profile;
+      els.miniName.textContent = p.name || "未登记人员";
+      els.miniRole.textContent = p.name ? `${p.department}｜${p.role}` : "请先完成组织登记";
+    }
+ 
+    function saveProfile() {
+      const previousRole = state.profile.role;
+      const next = readProfileForm();
+      if (!next.name) {
+        showToast("请填写姓名后再保存。", "error");
+        els.nameInput.focus();
+        return;
+
+      }
+      state.profile = next;
+      if (previousRole !== next.role) {
+        state.roleCompleted = false;
+        state.quiz = { ...cloneDefaultState().quiz };
+      }
+      if (!state.pledge.name) state.pledge.name = next.name;
+      saveState(false);
+      updateMiniProfile();
+      renderRoleContent();
+      buildQuiz(true);
+      updateProgress();
+      showToast("组织登记信息已保存。", "success");
+    }
+ 
+    function renderCommonLessons() {
+      els.commonLessonList.innerHTML = commonLessons.map((lesson, index) => {
+        const completed = state.commonCompleted.includes(index);
+        return `
+          <article class="lesson-item" data-lesson-index="${index}">
+            <div class="lesson-head">
+              <div>
+                <h4>${escapeHtml(lesson.title)}</h4>
+                <span class="tag ${completed ? "" : "info"}">${completed ? "已完成" : "待学习"}</span>
+              </div>
+              <button type="button" class="btn btn-muted btn-sm lesson-toggle">展开</button>
+            </div>
+            <div class="lesson-body">
+              <ul>${lesson.points.map(point => `<li>${escapeHtml(point)}</li>`).join("")}</ul>
+              <div class="lesson-actions">
+                <button type="button" class="btn ${completed ? "btn-outline" : "btn-primary"} complete-lesson-btn">
+                  ${completed ? "取消完成" : "确认已学习"}
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+ 
+      els.commonLessonList.querySelectorAll(".lesson-toggle").forEach(button => {
+        button.addEventListener("click", () => {
+          const item = button.closest(".lesson-item");
+          item.classList.toggle("open");
+          button.textContent = item.classList.contains("open") ? "收起" : "展开";
+        });
+      });
+ 
+      els.commonLessonList.querySelectorAll(".complete-lesson-btn").forEach(button => {
+        button.addEventListener("click", () => {
+          const item = button.closest(".lesson-item");
+          const index = Number(item.dataset.lessonIndex);
+          if (state.commonCompleted.includes(index)) {
+            state.commonCompleted = state.commonCompleted.filter(i => i !== index);
+          } else {
+            state.commonCompleted.push(index);
+            state.commonCompleted.sort((a, b) => a - b);
+          }
+          saveState(false);
+          renderCommonLessons();
+          updateProgress();
+          showToast("通用课程进度已更新。", "success");
+        });
+      });
+    }
+ 
+    function renderRoleContent() {
+      const role = state.profile.role || roleOrder[0];
+      const data = roleData[role];
+      els.roleContent.innerHTML = `
+        <div class="role-header">
+          <div>
+            <span class="tag" style="background:rgba(255,255,255,.16);color:#fff;">当前岗位</span>
+            <h3>${escapeHtml(role)}</h3>
+            <p>${escapeHtml(data.summary)}</p>
+          </div>
+          <div class="role-icon" aria-hidden="true">${data.icon}</div>
+        </div>
+        <div class="detail-grid">
+          ${detailBlock("主要权责场景", data.duties, "duty")}
+          ${detailBlock("重点廉洁合规风险", data.risks, "risk")}
+          ${detailBlock("主要防控措施", data.controls, "control")}
+          ${detailBlock("岗位红线", data.redlines, "redline")}
+        </div>
+        <div class="notice ${state.roleCompleted ? "success" : "warning"}" style="margin-top:16px;">
+          ${state.roleCompleted ? "已确认完成本岗位学习。岗位风险应结合项目授权、业务实际和监督意见动态更新。" : "请逐项阅读后点击“确认完成岗位学习”。"}
+        </div>
+      `;
+      document.getElementById("completeRoleBtn").textContent = state.roleCompleted ? "已完成岗位学习" : "确认完成岗位学习";
+      document.getElementById("completeRoleBtn").className = state.roleCompleted ? "btn btn-outline no-print" : "btn btn-primary no-print";
+      els.quizRoleHint.textContent = `当前岗位：${role}`;
+    }
+ 
+    function detailBlock(title, items, className) {
+      return `
+        <div class="detail-block ${className}">
+          <h4>${escapeHtml(title)}</h4>
+          <ul>${items.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        </div>
+      `;
+    }
+ 
+    function renderSpecialRisks() {
+      els.specialRiskGrid.innerHTML = specialRisks.map(item => `
+        <article class="card">
+          <div style="font-size:34px;">${item.icon}</div>
+          <h4 style="font-size:19px;margin:8px 0;">${escapeHtml(item.title)}</h4>
+          <p>${escapeHtml(item.desc)}</p>
+          <div class="notice danger"><strong>风险红线：</strong>${escapeHtml(item.red)}</div>
+        </article>
+      `).join("");
+
+    }
+ 
+    function buildQuiz(silent = false) {
+      const role = state.profile.role || roleOrder[0];
+      const roleQuestions = roleData[role].questions.map(q => ({ ...q, type: "岗位专业题" }));
+      const selectedCommon = shuffle(commonQuestions).slice(0, 5);
+      const selectedRole = shuffle(roleQuestions).slice(0, 2);
+      const selectedScenario = shuffle(scenarioQuestions).slice(0, 3);
+      state.quiz = {
+        ...cloneDefaultState().quiz,
+        questions: shuffle([...selectedCommon, ...selectedRole, ...selectedScenario])
+      };
+      renderQuiz();
+      saveState(false);
+      if (!silent) showToast("已按当前岗位重新生成 10 道题。", "success");
+    }
+ 
+    function renderQuiz() {
+      const questions = state.quiz.questions || [];
+      if (questions.length === 0) {
+        els.quizForm.innerHTML = `<div class="empty-state">请点击“重新生成试卷”。</div>`;
+        els.quizResult.innerHTML = "";
+        return;
+      }
+ 
+      els.quizForm.innerHTML = questions.map((question, index) => `
+        <fieldset class="question-card">
+          <div class="question-meta">
+            <span>${escapeHtml(question.type || "测评题")}</span>
+            <span>${question.redline ? '<span class="tag danger">红线题</span>' : `第 ${index + 1} 题`}</span>
+          </div>
+          <legend class="question-title">${index + 1}. ${escapeHtml(question.q)}</legend>
+          <div class="option-list">
+            ${question.options.map((option, optionIndex) => `
+              <label class="option">
+                <input type="radio" name="q_${index}" value="${optionIndex}" ${String(state.quiz.answers?.[index]) === String(optionIndex) ? "checked" : ""} />
+                <span>${String.fromCharCode(65 + optionIndex)}. ${escapeHtml(option)}</span>
+              </label>
+            `).join("")}
+          </div>
+        </fieldset>
+      `).join("");
+ 
+      if (state.quiz.score !== null) renderQuizResult();
+      else els.quizResult.innerHTML = "";
+    }
+ 
+    function collectQuizAnswers() {
+      const answers = {};
+      state.quiz.questions.forEach((_, index) => {
+        const checked = els.quizForm.querySelector(`input[name="q_${index}"]:checked`);
+        if (checked) answers[index] = Number(checked.value);
+      });
+      return answers;
+    }
+ 
+    function submitQuiz() {
+      if (!state.profile.name) {
+        showToast("请先完成首页组织登记。", "error");
+        switchPanel("home");
+        return;
+      }
+      if (!state.quiz.questions || state.quiz.questions.length !== 10) buildQuiz(true);
+      const answers = collectQuizAnswers();
+      if (Object.keys(answers).length !== state.quiz.questions.length) {
+        showToast("请完成全部题目后再提交。", "error");
+        return;
+      }
+ 
+      let correct = 0;
+      let redlineTotal = 0;
+      let redlineCorrect = 0;
+      const wrongIndexes = [];
+ 
+      state.quiz.questions.forEach((question, index) => {
+        const isCorrect = answers[index] === question.answer;
+        if (isCorrect) correct += 1;
+        else wrongIndexes.push(index);
+        if (question.redline) {
+          redlineTotal += 1;
+          if (isCorrect) redlineCorrect += 1;
+        }
+      });
+ 
+      state.quiz.answers = answers;
+      state.quiz.correct = correct;
+      state.quiz.score = correct * 10;
+      state.quiz.redlineTotal = redlineTotal;
+      state.quiz.redlineCorrect = redlineCorrect;
+      state.quiz.wrongIndexes = wrongIndexes;
+      state.quiz.completedAt = new Date().toISOString();
+      saveState(false);
+      renderQuizResult();
+      updateProgress();
+      renderReport();
+      showToast("测评已提交，结果已保存。", "success");
+    }
+ 
+    function renderQuizResult() {
+      const quiz = state.quiz;
+      if (quiz.score === null) return;
+      const pass = quiz.score >= 80 && quiz.redlineCorrect === quiz.redlineTotal;
+      const degree = Math.max(0, Math.min(360, quiz.score * 3.6));
+      const wrongDetails = quiz.wrongIndexes.map(index => {
+        const q = quiz.questions[index];
+        return `
+          <div class="notice danger" style="margin-top:10px;">
+            <strong>第 ${index + 1} 题：</strong>${escapeHtml(q.q)}<br />
+            <strong>正确答案：</strong>${escapeHtml(q.options[q.answer])}<br />
+            <strong>提示：</strong>${escapeHtml(q.explain)}
+
+          </div>
+        `;
+      }).join("");
+ 
+      els.quizResult.innerHTML = `
+        <div class="content-card" style="margin-top:18px;box-shadow:none;">
+          <div class="result-layout">
+            <div class="score-ring" style="background:conic-gradient(var(--primary) 0deg, var(--primary) ${degree}deg, #eaecf0 ${degree}deg);">
+              <span>${quiz.score}分</span>
+            </div>
+            <div>
+              <h3 style="margin-top:0;">${pass ? "本次学习测评通过" : "本次测评需继续复习"}</h3>
+              <p>答对 ${quiz.correct}/10 题；红线题答对 ${quiz.redlineCorrect}/${quiz.redlineTotal} 题。</p>
+              <div class="notice ${pass ? "success" : "warning"}">
+                ${pass ? "已达到建议学习标准。请继续完成岗位承诺并生成学习报告。" : "建议重点复习错题及本岗位红线。建议标准：总分不低于 80 分，且红线题全部答对。"}
+              </div>
+            </div>
+          </div>
+          ${quiz.wrongIndexes.length ? `<h4>错题复习</h4>${wrongDetails}` : '<div class="notice success" style="margin-top:18px;">本次全部答对。</div>'}
+        </div>
+      `;
+    }
+ 
+    function savePledge() {
+      const name = els.pledgeName.value.trim();
+      const date = els.pledgeDate.value;
+      const agreed = els.pledgeAgree.checked;
+      if (!agreed) {
+        showToast("请勾选承诺确认。", "error");
+        return;
+      }
+      if (!name || !date) {
+        showToast("请填写承诺人姓名和日期。", "error");
+        return;
+      }
+      if (state.profile.name && name !== state.profile.name) {
+        const proceed = window.confirm("承诺人姓名与组织登记姓名不一致，是否仍然提交？");
+        if (!proceed) return;
+      }
+      state.pledge = {
+        agreed: true,
+        name,
+        date,
+        completedAt: new Date().toISOString()
+      };
+      saveState(false);
+      updateProgress();
+      renderReport();
+      showToast("岗位廉洁合规承诺已保存。", "success");
+    }
+ 
+    function updateProgress() {
+      const commonCount = state.commonCompleted.length;
+      const commonPercent = Math.round((commonCount / commonLessons.length) * 100);
+      document.getElementById("commonProgressText").textContent = `${commonCount}/${commonLessons.length}`;
+      document.getElementById("commonProgressBar").style.width = `${commonPercent}%`;
+ 
+      document.getElementById("roleProgressText").textContent = state.roleCompleted ? "已完成" : "未完成";
+      document.getElementById("roleProgressBar").style.width = state.roleCompleted ? "100%" : "0%";
+ 
+      const quizPercent = state.quiz.score === null ? 0 : state.quiz.score;
+      document.getElementById("quizProgressText").textContent = state.quiz.score === null ? "未测评" : `${state.quiz.score}分`;
+      document.getElementById("quizProgressBar").style.width = `${quizPercent}%`;
+    }
+ 
+    function getStatusText() {
+      const commonDone = state.commonCompleted.length === commonLessons.length;
+      const roleDone = state.roleCompleted;
+      const quizPass = state.quiz.score !== null && state.quiz.score >= 80 && state.quiz.redlineCorrect === state.quiz.redlineTotal;
+      const pledgeDone = state.pledge.agreed;
+      if (commonDone && roleDone && quizPass && pledgeDone) return "已完成本轮学习";
+      return "学习流程尚未全部完成";
+    }
+ 
+    function getReviewSuggestions() {
+      const suggestions = [];
+      if (state.commonCompleted.length < commonLessons.length) suggestions.push("继续完成全部通用微课堂。" );
+      if (!state.roleCompleted) suggestions.push(`重新阅读“${state.profile.role}”岗位风险和红线。`);
+      if (state.quiz.score === null) suggestions.push("完成岗位廉洁合规测评。" );
+      else {
+        if (state.quiz.score < 80) suggestions.push("复习错题后重新测评，建议总分达到 80 分以上。" );
+        if (state.quiz.redlineCorrect < state.quiz.redlineTotal) suggestions.push("重点复习红线题，确保红线题全部掌握。" );
+      }
+      if (!state.pledge.agreed) suggestions.push("阅读并提交岗位廉洁合规承诺。" );
+      if (state.profile.note) suggestions.push(`个人关注重点：${state.profile.note}`);
+      if (suggestions.length === 0) suggestions.push("持续结合项目授权和业务变化更新岗位风险清单，定期复学。" );
+      return suggestions;
+    }
+ 
+    function renderReport() {
+      const p = state.profile;
+      if (!p.name) {
+        els.reportContainer.innerHTML = `
+          <div class="report-sheet empty-state">
+            <h3>尚未生成学习报告</h3>
+            <p>请先在首页完成组织登记。</p>
+            <button class="btn btn-primary no-print" data-go="home">返回登记</button>
+          </div>
+        `;
+        bindDynamicGoButtons();
+        return;
+      }
+ 
+      const role = roleData[p.role];
+      const suggestions = getReviewSuggestions();
+      const quizText = state.quiz.score === null
+        ? "未完成"
+        : `${state.quiz.score} 分（答对 ${state.quiz.correct}/10，红线题 ${state.quiz.redlineCorrect}/${state.quiz.redlineTotal}）`;
+ 
+      els.reportContainer.innerHTML = `
+
+        <div class="report-sheet">
+          <div class="report-title">
+            <h2>境外项目廉洁合规教育个人学习报告</h2>
+            <p>中交西安筑路机械有限公司吉国项目群党支部</p>
+          </div>
+ 
+          <table class="info-table">
+            <tr><th>姓名</th><td>${escapeHtml(p.name)}</td><th>工号</th><td>${escapeHtml(p.employeeNo || "未填写")}</td></tr>
+            <tr><th>部门/项目</th><td>${escapeHtml(p.department)}</td><th>岗位</th><td>${escapeHtml(p.role)}</td></tr>
+            <tr><th>学习状态</th><td>${escapeHtml(getStatusText())}</td><th>数据更新时间</th><td>${escapeHtml(formatDateTime(state.updatedAt))}</td></tr>
+          </table>
+ 
+          <div class="report-block">
+            <h4>一、学习完成情况</h4>
+            <table class="info-table">
+              <tr><th>通用课程</th><td>${state.commonCompleted.length}/${commonLessons.length} 节</td></tr>
+              <tr><th>岗位学习</th><td>${state.roleCompleted ? "已确认完成" : "未确认完成"}</td></tr>
+              <tr><th>岗位测评</th><td>${escapeHtml(quizText)}</td></tr>
+              <tr><th>廉洁承诺</th><td>${state.pledge.agreed ? `已提交（${escapeHtml(state.pledge.date)}）` : "未提交"}</td></tr>
+            </table>
+          </div>
+ 
+          <div class="report-block">
+            <h4>二、本岗位主要权责场景</h4>
+            <ul>${role.duties.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </div>
+ 
+          <div class="report-block">
+            <h4>三、本岗位重点风险</h4>
+            <ul>${role.risks.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </div>
+ 
+          <div class="report-block">
+            <h4>四、本岗位防控措施</h4>
+            <ul>${role.controls.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </div>
+ 
+          <div class="report-block">
+            <h4>五、岗位红线</h4>
+            <ul>${role.redlines.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </div>
+ 
+          <div class="report-block">
+            <h4>六、需重点复习与改进事项</h4>
+            <ul>${suggestions.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </div>
+ 
+          <div class="report-block">
+            <h4>七、承诺信息</h4>
+            <p>承诺人：${escapeHtml(state.pledge.name || "未提交")}　　承诺日期：${escapeHtml(state.pledge.date || "未提交")}</p>
+            <p class="muted">说明：本报告用于廉洁合规教育和岗位风险提示，不作为对个人廉洁状况的定性结论。岗位风险应结合公司制度、项目授权、业务实际和监督意见动态更新。</p>
+          </div>
+        </div>
+      `;
+    }
+ 
+    function exportJson() {
+      const payload = JSON.stringify(state, null, 2);
+      const blob = new Blob([payload], { type: "application/json;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const safeName = (state.profile.name || "学习人员").replace(/[\\/:*?"<>|]/g, "_");
+      a.href = url;
+      a.download = `清风驿站_${safeName}_${todayString()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showToast("学习数据已导出。", "success");
+    }
+ 
+    function resetAll() {
+      const confirmed = window.confirm("确认清除当前浏览器中保存的全部学习数据吗？此操作不可撤销。" );
+      if (!confirmed) return;
+      localStorage.removeItem(APP_KEY);
+      state = cloneDefaultState();
+      fillProfileForm();
+      updateMiniProfile();
+      renderCommonLessons();
+      renderRoleContent();
+      buildQuiz(true);
+      renderPledge();
+      updateProgress();
+      renderReport();
+      showToast("本地数据已清除。", "success");
+    }
+ 
+    function renderPledge() {
+      els.pledgeList.innerHTML = pledgeItems.map(item => `<li>${escapeHtml(item)}</li>`).join("");
+      els.pledgeAgree.checked = Boolean(state.pledge.agreed);
+      els.pledgeName.value = state.pledge.name || state.profile.name || "";
+      els.pledgeDate.value = state.pledge.date || todayString();
+    }
+ 
+    function bindDynamicGoButtons() {
+      document.querySelectorAll("[data-go]").forEach(button => {
+        button.onclick = () => switchPanel(button.dataset.go);
+      });
+    }
+ 
+    function bindEvents() {
+      document.querySelectorAll(".nav-btn").forEach(button => {
+        button.addEventListener("click", () => switchPanel(button.dataset.panel));
+      });
+ 
+      bindDynamicGoButtons();
+ 
+      document.getElementById("saveProfileBtn").addEventListener("click", saveProfile);
+      document.getElementById("saveTopBtn").addEventListener("click", () => saveState(true));
+      document.getElementById("resetAllBtn").addEventListener("click", resetAll);
+
+      document.getElementById("buildQuizBtn").addEventListener("click", () => buildQuiz(false));
+      document.getElementById("submitQuizBtn").addEventListener("click", submitQuiz);
+      document.getElementById("savePledgeBtn").addEventListener("click", savePledge);
+      document.getElementById("printReportBtn").addEventListener("click", () => {
+        renderReport();
+        window.print();
+      });
+      document.getElementById("printTopBtn").addEventListener("click", () => {
+        renderReport();
+        switchPanel("report");
+        window.setTimeout(() => window.print(), 180);
+      });
+      document.getElementById("exportJsonBtn").addEventListener("click", exportJson);
+      document.getElementById("completeRoleBtn").addEventListener("click", () => {
+        state.roleCompleted = !state.roleCompleted;
+        saveState(false);
+        renderRoleContent();
+        updateProgress();
+        showToast(state.roleCompleted ? "已确认完成岗位学习。" : "已取消岗位学习完成状态。", "success");
+      });
+      els.mobileNavToggle.addEventListener("click", () => els.sidebar.classList.toggle("open"));
+      els.roleSelect.addEventListener("change", () => {
+        const selectedRole = els.roleSelect.value;
+        if (state.profile.role !== selectedRole) {
+          showToast("岗位已变更，请保存登记信息后重新学习和测评。", "info");
+        }
+      });
+    }
+ 
+    function init() {
+      renderRoleOptions();
+      fillProfileForm();
+      updateMiniProfile();
+      renderCommonLessons();
+      renderRoleContent();
+      renderSpecialRisks();
+      renderPledge();
+      if (!state.quiz.questions || state.quiz.questions.length !== 10) buildQuiz(true);
+      else renderQuiz();
+      updateProgress();
+      renderReport();
+      bindEvents();
+    }
+ 
+    init();
+  </script>
+</body>
+</html>
